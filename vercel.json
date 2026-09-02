@@ -1,5 +1,15 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "public",
-  "framework": null
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/events/iros2026",
+      "destination": "/"
+    },
+    {
+      "source": "/events/iros2026/:path*",
+      "destination": "/:path*"
+    }
+  ]
 }
