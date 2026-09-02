@@ -2,14 +2,17 @@
   "buildCommand": "npm run build",
   "outputDirectory": "public",
   "framework": null,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/events/iros2026/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
-      "source": "/events/iros2026",
-      "destination": "/"
-    },
-    {
-      "source": "/events/iros2026/:path*",
-      "destination": "/:path*"
+      "source": "/images/:path*",
+      "destination": "/events/iros2026/images/:path*"
     }
   ]
 }
