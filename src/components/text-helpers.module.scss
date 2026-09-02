@@ -1,0 +1,46 @@
+@import "../styles/global";
+
+.hash {
+  transition-duration: 0.15s;
+  font-weight: normal;
+  margin-right: -20px;
+  pointer-events: none;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.textWrapper {
+  // hides the hash
+  margin-left: -34px;
+}
+
+@include breakpoint(mobile) {
+  .hash {
+    opacity: 0 !important;
+  }
+}
+
+.title {
+  margin: 0 0 12px 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #303945;
+  padding-left: 26px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.title,
+.hash {
+  display: inline-block;
+}
+
+:global(.ant-divider-horizontal.ant-divider-with-text)::before,
+:global(.ant-divider-horizontal.ant-divider-with-text)::after {
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+}

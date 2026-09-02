@@ -1,0 +1,454 @@
+@import "../styles/global";
+
+// ------------------------------------------------------------------
+// Hero banner
+.hero {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 18px 0 10px;
+  padding: 48px 40px;
+  min-height: 320px;
+  color: #f5f7fb;
+  background-image: url("/images/iros2026/hero-moon.jpg");
+  background-size: cover;
+  background-position: center center;
+  box-shadow: 0 18px 50px rgba(7, 11, 24, 0.35);
+
+  @include breakpoint(mobile) {
+    padding: 32px 22px;
+    min-height: 280px;
+    background-position: center center;
+  }
+
+  .heroContent {
+    .heroTitle,
+    p.heroSubtitle {
+      color: #ffffff;
+    }
+  }
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      105deg,
+      rgba(7, 11, 24, 0.52) 0%,
+      rgba(7, 11, 24, 0.38) 45%,
+      rgba(29, 44, 77, 0.22) 100%
+    ),
+    linear-gradient(to top, rgba(7, 11, 24, 0.35), transparent 55%);
+  pointer-events: none;
+}
+
+.heroLogos {
+  position: absolute;
+  top: 48px;
+  right: 40px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  width: 110px;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.95;
+  }
+
+  img:first-child {
+    width: 112%;
+    transform: scaleX(1.06);
+    transform-origin: left center;
+  }
+
+  @include breakpoint(mobile) {
+    top: 32px;
+    right: 22px;
+    width: 75px;
+    gap: 8px;
+
+    img:first-child {
+      width: 115%;
+      transform: scaleX(1.04);
+    }
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+}
+
+.heroBadge {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid rgba(245, 247, 251, 0.4);
+  border-radius: 999px;
+  margin-bottom: 16px;
+  color: #cdd9f0;
+}
+
+.heroTitle {
+  font-family: "League Spartan", sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.02em;
+  margin: 0 0 14px;
+  max-width: 760px;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+
+  @include breakpoint(mobile) {
+    font-size: 28px;
+  }
+}
+
+.heroSubtitle {
+  font-size: 17px;
+  max-width: 680px;
+  line-height: 1.5em;
+  margin-bottom: 24px;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+}
+
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 30px;
+
+  .heroMetaItem {
+    .heroMetaLabel {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #9fb0d4;
+    }
+    .heroMetaValue {
+      font-size: 15px;
+      font-weight: 600;
+      color: #f5f7fb;
+    }
+  }
+}
+
+// ------------------------------------------------------------------
+// Avatars (shared by speakers + organizers)
+.avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  background: linear-gradient(135deg, #2b4b7c, #5a3f8c);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+// ------------------------------------------------------------------
+// Speakers
+.speakersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.speakerCard {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px;
+  border: 1px solid #e8ecf2;
+  border-radius: 12px;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(29, 44, 77, 0.12);
+  }
+
+  .speakerAvatar {
+    width: 84px;
+    height: 84px;
+    font-size: 26px;
+  }
+
+  .speakerName {
+    font-weight: 700;
+    font-size: 16px;
+    color: #1f2a3a;
+  }
+
+  .speakerAffiliation {
+    color: #5a6b82;
+    font-size: 13px;
+    margin: 2px 0 6px;
+  }
+}
+
+// ------------------------------------------------------------------
+// Organizers
+.organizerGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px 14px;
+  margin-top: 18px;
+}
+
+.organizer {
+  width: 110px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.25em;
+
+  .organizerAvatar {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 8px;
+    font-size: 24px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 18px rgba(90, 63, 140, 0.35);
+    }
+  }
+
+  .organizerName {
+    font-weight: 700;
+    color: #1f2a3a;
+  }
+
+  .organizerOrg {
+    color: #5a6b82;
+    margin-top: 2px;
+  }
+
+  @include breakpoint(mobile) {
+    width: 88px;
+    .organizerAvatar {
+      width: 68px;
+      height: 68px;
+      font-size: 20px;
+    }
+  }
+}
+
+// ------------------------------------------------------------------
+// Agenda
+.agendaSpeakers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+.agendaSpeaker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.agendaSpeakerPhoto {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.agendaSpeakerName {
+  font-weight: 600;
+  color: #1f2a3a;
+  line-height: 1.3;
+}
+
+.agendaSpeakerAffiliation {
+  font-size: 13px;
+  color: #5a6b82;
+  line-height: 1.3;
+}
+
+.agendaSpeakerRole {
+  font-size: 12px;
+  color: #7c8aa0;
+  font-style: italic;
+}
+
+.agendaBreakItem {
+  :global(.ant-timeline-item-tail) {
+    border-inline-start-color: #d1d5db !important;
+  }
+}
+
+.agendaBreak {
+  color: #6b7280;
+
+  b {
+    color: #4b5563;
+    font-weight: 600;
+  }
+
+  span {
+    color: #9ca3af !important;
+  }
+}
+
+// ------------------------------------------------------------------
+// Schedule table (legacy)
+.scheduleTable {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 14px;
+  font-size: 14px;
+
+  th,
+  td {
+    padding: 11px 14px;
+    border-bottom: 1px solid #e8ecf2;
+    text-align: left !important;
+  }
+
+  thead th {
+    background: #f0f4f9;
+    font-weight: 600;
+    color: #1f2a3a;
+  }
+
+  .scheduleTime {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    color: #2b4b7c;
+    font-weight: 600;
+    width: 130px;
+  }
+
+  .breakRow td {
+    background: #fafbfd;
+    color: #7c8aa0;
+    font-style: italic;
+  }
+}
+
+// ------------------------------------------------------------------
+// Info cards (objectives, format)
+.infoCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+
+  .infoCard {
+    padding: 18px;
+    border: 1px solid #e8ecf2;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #ffffff, #f7f9fc);
+
+    .infoCardTitle {
+      font-weight: 700;
+      color: #2b4b7c;
+      margin-bottom: 6px;
+    }
+
+    .infoCardText {
+      font-size: 13.5px;
+      color: #47515c;
+      line-height: 1.45em;
+    }
+  }
+}
+
+// ------------------------------------------------------------------
+// Submission link
+.submissionLink {
+  font-weight: 600;
+  color: #2b4b7c;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(43, 75, 124, 0.35);
+  transition: color 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    color: #1d3557;
+    border-bottom-color: #2b4b7c;
+  }
+}
+
+// ------------------------------------------------------------------
+// Sponsors
+.sponsorGrid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 28px 56px;
+  margin-top: 18px;
+}
+
+.sponsorLink {
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.sponsorLogo {
+  display: block;
+  height: 84px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+
+  @include breakpoint(mobile) {
+    height: 64px;
+  }
+}
+
+// ------------------------------------------------------------------
+// Contact
+.contactBox {
+  margin-top: 18px;
+  padding: 20px 24px;
+  border: 1px solid #e8ecf2;
+  border-radius: 12px;
+  background: #f7f9fc;
+
+  a {
+    color: #2b4b7c;
+    font-weight: 600;
+  }
+}
+
+.footerIcon {
+  font-size: 25px;
+  color: #aeb7c4;
+  transition-duration: 0.3s;
+  vertical-align: middle;
+  margin: 20px 10px;
+
+  &:hover {
+    color: #8c96a3 !important;
+  }
+}

@@ -1,0 +1,157 @@
+import React from "react";
+import Header, { OtherYears } from "./page-header";
+import { headerId } from "./text-helpers";
+import { Helmet } from "react-helmet";
+import * as style from "./page-wrapper.module.scss";
+
+// This brings both the header, page content, section contents
+// in a way that they are clickable. Note, all children
+// must be sections: <Section></Section>.
+export default class PageWrapper extends React.Component<
+  {
+    conference: string;
+    children: any;
+    rightSide: React.ReactNode;
+    imageContent: any;
+    headerGradient: string;
+    headerStyle?: string;
+    headerContainer?: any;
+    compactHeader?: boolean;
+    editionNavSide?: "left" | "right";
+    documentTitle?: string;
+  },
+  { headerIdLocations: number[]; focusedHeaderI: number }
+> {
+  updateSidebarScroll: { (): void };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      focusedHeaderI: -1,
+      headerIdLocations: [],
+    };
+
+    // workaround so that this.state can be accessed within event listeners.
+    const self = this;
+    this.updateSidebarScroll = () => {
+      // scrolled to absolute bottom of page, set last section
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+        self.setState({
+          focusedHeaderI: self.state.headerIdLocations.length - 1,
+        });
+      } else {
+        // updates which section should be highlighted.
+        let scrollTop =
+          window.pageYOffset !== undefined
+            ? window.pageYOffset
+            : ((document.documentElement ||
+                document.body.parentNode ||
+                document.body) as HTMLElement).scrollTop;
+
+        // give some extra padding to the sections
+        scrollTop += 50;
+
+        // above the first section
+        if (
+          self.state.headerIdLocations.length > 0 &&
+          scrollTop < self.state.headerIdLocations[0]
+        ) {
+          self.setState({ focusedHeaderI: -1 });
+        }
+
+        // find which section
+        for (let i = 0; i < self.state.headerIdLocations.length; i++) {
+          if (scrollTop > self.state.headerIdLocations[i]) {
+            self.setState({ focusedHeaderI: i });
+          }
+        }
+      }
+    };
+  }
+
+  getChildrenArray() {
+    return React.Children.toArray(this.props.children).filter(
+      (child: any) => child && child.props && child.props.title
+    );
+  }
+
+  updateHeaderLocations() {
+    this.setState({
+      headerIdLocations: this.getChildrenArray().map(
+        (section: any) => {
+          const id = headerId(section.props.title);
+          const element = document.getElementById(id);
+          if (!element) {
+            console.warn(`Element with id "${id}" not found for section:`, section.props.title);
+            return 0; // Default position if element not found
+          }
+          return element.getBoundingClientRect().top + window.scrollY;
+        }
+      ),
+    });
+  }
+
+  sidebarHeaderClick(header: string) {
+    window.location.hash = headerId(header);
+  }
+
+  componentDidMount() {
+    this.updateHeaderLocations();
+    window.addEventListener("scroll", this.updateSidebarScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.updateSidebarScroll);
+  }
+
+  render() {
+    const editionNavSide = this.props.editionNavSide ?? "right";
+    const editionNav = (
+      <OtherYears
+        onConference={this.props.conference}
+        align={editionNavSide}
+      />
+    );
+
+    // formats the page title, header, main content, and right sidebar content.
+    return (
+      <>
+        <Helmet>
+          <title>{this.props.documentTitle ?? "Space Robotics Workshop"}</title>
+        </Helmet>
+        <Header
+          conference={this.props.conference}
+          leftSide={editionNavSide === "left" ? editionNav : null}
+          rightSide={editionNavSide === "right" ? editionNav : null}
+          imageContent={this.props.imageContent}
+          headerGradient={this.props.headerGradient}
+          headerStyle={this.props.headerStyle}
+          headerContainer={this.props.headerContainer}
+          compact={this.props.compactHeader}
+        />
+        <div className={style.contentWrapper}>
+          <div className={style.mainContent}>{this.props.children}</div>
+          <div className={style.toc}>
+            {this.getChildrenArray().map((section: any, i: number) => (
+              <div
+                className={style.tocHeader}
+                key={section.props.title}
+                onClick={this.sidebarHeaderClick.bind(
+                  this,
+                  section.props.title
+                )}
+                style={
+                  this.state.focusedHeaderI == i
+                    ? { borderLeft: "2px solid #000" }
+                    : {}
+                }
+              >
+                {section.props.title}
+              </div>
+            ))}
+          </div>
+        </div>
+      </>
+    );
+  }
+}

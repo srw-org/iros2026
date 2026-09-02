@@ -1,0 +1,176 @@
+@import "../styles/global";
+
+$lightBlue: #b5f0ff;
+$darkBlue: #1d3d7e;
+
+.header {
+  overflow-x: hidden;
+  width: 100%;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: $darkBlue;
+  // background: linear-gradient(175deg, $lightBlue, $darkBlue);
+  background-size: 150% 150%;
+  animation: gradientAnimation 10s ease infinite;
+
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 30%;
+    }
+    50% {
+      background-position: 50% 100%;
+    }
+    100% {
+      background-position: 0% 30%;
+    }
+  }
+
+  .headerContent {
+    max-width: 1280px;
+    margin: auto;
+
+    .workshopTitle {
+      font-family: "League Spartan", sans-serif;
+      font-weight: 800;
+      font-size: 36px;
+      line-height: 0.75em;
+      text-transform: lowercase;
+      letter-spacing: -0.5px;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+
+      @include breakpoint(mobile) {
+        font-size: 26px;
+      }
+    }
+
+    .conference {
+      font-family: "Noto Sans", sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin-top: 10px;
+    }
+
+    .middle,
+    .left,
+    .right {
+      vertical-align: middle;
+    }
+
+    .middle {
+      text-align: center;
+      width: 50%;
+      display: inline-block;
+
+      @include breakpoint(tablet) {
+        width: 100% !important;
+      }
+
+      @include breakpoint(mobile) {
+        margin-bottom: 20px;
+      }
+    }
+
+    .right,
+    .left {
+      width: 25%;
+      display: inline-block;
+      font-size: 15px;
+    }
+
+    .left {
+      text-align: left;
+    }
+
+    .right {
+      text-align: right;
+
+      .comingSoonText {
+        vertical-align: middle;
+      }
+    }
+
+    .homeLink {
+      display: inline-flex;
+      align-items: center;
+      color: inherit;
+      font-size: 22px;
+      line-height: 1;
+      opacity: 0.9;
+      transition: opacity 0.15s ease, color 0.15s ease;
+
+      &:hover {
+        opacity: 1;
+        color: $darkBlue;
+      }
+    }
+
+    // Hides the elements, but keeps their width/height
+    // so that .middle doesn't end up left skewed.
+    @include breakpoint(tablet) {
+      .left,
+      .right {
+        opacity: 0;
+        z-index: -99 !important;
+        pointer-events: none;
+        width: 0 !important;
+      }
+    }
+  }
+}
+
+.editionsMenu {
+  min-width: 180px;
+
+  .editionsTitle {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #6b7280;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  > div + div {
+    margin-top: 4px;
+  }
+}
+
+.headerCompact {
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  .headerContent {
+    display: flex;
+    align-items: center;
+    max-width: 1280px;
+    margin: auto;
+  }
+
+  .left {
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  .right {
+    width: auto;
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  // The compact header has no center title, so keep the home and
+  // editions controls visible on smaller screens too.
+  @include breakpoint(tablet) {
+    .left,
+    .right {
+      opacity: 1 !important;
+      z-index: auto !important;
+      pointer-events: auto !important;
+      width: auto !important;
+    }
+  }
+}
+
