@@ -179,6 +179,7 @@ type AgendaItem = {
   title: string;
   time: string;
   isBreak?: boolean;
+  description?: string;
   speakers?: AgendaSpeaker[];
 };
 
@@ -196,7 +197,7 @@ const agenda: AgendaItem[] = [
   },
   {
     title:
-      'Keynote — "Similitude techniques for correlating lunar rover performance with Earth testing"',
+      'Keynote — "Similitude Techniques for Correlating Lunar Rover Performance with Earth Testing"',
     time: "8:35 – 9:00 AM",
     speakers: [
       {
@@ -231,20 +232,19 @@ const agenda: AgendaItem[] = [
     ],
   },
   {
-    title:
-      'Invited Talk — "Lunar Leaper: A Mission to investigate lava tubes on the Moon"',
-    time: "9:50 – 10:15 AM",
+    title: "Industry Lightning Talk — TBD",
+    time: "9:50 – 9:55 AM",
     speakers: [
       {
-        name: "Marco Hutter",
-        affiliation: "ETH Zurich",
-        photo: "/images/iros2026/people/marcoHutter.jpg",
+        name: "Brian Yamauchi",
+        affiliation: "Starpath",
+        photo: "/images/iros2026/people/brianYamauchi.jpg",
       },
     ],
   },
   {
-    title: "Industry Spotlight",
-    time: "10:15 – 10:30 AM",
+    title: "Invited Talk — TBD",
+    time: "9:55 – 10:10 AM",
     speakers: [
       {
         name: "Yuto Nakanishi",
@@ -254,14 +254,30 @@ const agenda: AgendaItem[] = [
     ],
   },
   {
+    title: "Contributed Paper Spotlights (4 × 5-minute presentations)",
+    time: "10:10 – 10:30 AM",
+  },
+  {
     title: "Coffee Break + Poster Session",
     time: "10:30 – 11:00 AM",
     isBreak: true,
   },
   {
     title:
-      'Invited Talk — "AI Robotics for Sustainable Space Exploration."',
+      'Invited Talk — "Lunar Leaper: A Mission to Investigate Lava Tubes on the Moon"',
     time: "11:00 – 11:25 AM",
+    speakers: [
+      {
+        name: "Marco Hutter",
+        affiliation: "ETH Zurich",
+        photo: "/images/iros2026/people/marcoHutter.jpg",
+      },
+    ],
+  },
+  {
+    title:
+      'Invited Talk — "AI Robotics for Sustainable Space Exploration"',
+    time: "11:25 – 11:50 AM",
     speakers: [
       {
         name: "Yang Gao",
@@ -271,12 +287,9 @@ const agenda: AgendaItem[] = [
     ],
   },
   {
-    title: "Contributed Paper Spotlights (4 × 5 min)",
-    time: "11:25 – 11:45 AM",
-  },
-  {
-    title: "Panel Discussion",
-    time: "11:45 AM – 12:20 PM",
+    title:
+      'Panel Discussion — "Next-Gen Lunar Robotics: Building and Sustaining a Moon Base"',
+    time: "11:50 AM – 12:20 PM",
     speakers: [
       {
         name: "Yuto Nakanishi",
@@ -303,6 +316,7 @@ const agenda: AgendaItem[] = [
   {
     title: "Awards + Closing Remarks",
     time: "12:20 – 12:30 PM",
+    description: "Best Paper / Poster Awards + Closing",
   },
 ];
 
@@ -703,6 +717,12 @@ const Iros2026Page = () => (
                 <b>{item.title}</b>
                 <br />
                 <Time time={item.time} />
+                {item.description ? (
+                  <>
+                    <br />
+                    {item.description}
+                  </>
+                ) : null}
                 {item.speakers && item.speakers.length > 0 ? (
                   <AgendaSpeakers speakers={item.speakers} />
                 ) : null}
