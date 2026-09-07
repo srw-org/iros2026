@@ -930,10 +930,6 @@ const Iros2026Page = () => (
           everyone who submitted, and to our reviewers for their valuable feedback
           and dedication to maintaining the quality of the workshop.
         </p>
-        <p>
-          <strong>48</strong> submissions received, <strong>35</strong> accepted
-          (4 oral + 31 poster).
-        </p>
 
         <div className={style.paperList}>
           {acceptedSubmissions.map(paper => (
