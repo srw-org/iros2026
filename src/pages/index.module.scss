@@ -393,22 +393,28 @@
   background: #fff;
 }
 
-.paperItemOral {
-  border-left: 3px solid #2b4b7c;
-  background: linear-gradient(180deg, #ffffff, #f7f9fc);
-}
-
 .paperTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
   font-weight: 700;
   font-size: 15px;
   color: #1f2a3a;
   line-height: 1.35;
 }
 
-.paperId {
+.paperBadge {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: #2b4b7c;
-  margin-right: 8px;
-  font-variant-numeric: tabular-nums;
+  background: #eef3f9;
+  border: 1px solid rgba(43, 75, 124, 0.22);
+  border-radius: 999px;
+  padding: 2px 8px;
 }
 
 .paperAuthors {

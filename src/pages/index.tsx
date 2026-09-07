@@ -321,224 +321,190 @@ const agenda: AgendaItem[] = [
 ];
 
 type AcceptedPaper = {
-  id: number;
   title: string;
   authors: string;
+  oral?: boolean;
 };
 
-const oralPresentations: AcceptedPaper[] = [
+const acceptedSubmissions: AcceptedPaper[] = [
   {
-    id: 5,
     title: "Dynamic Symmetry for Orientation-Independent Planetary Mobility",
     authors: "Boxi Xia, Jiaxun Liu, Boyuan Chen",
+    oral: true,
   },
   {
-    id: 10,
     title:
       "In-Situ Reconstruction of the International Space Station Using 3D Gaussian Splatting and Astrobee",
     authors: "Hudson Kim, Ryan Soussan, Brian Coltin, Jordan Kam",
+    oral: true,
   },
   {
-    id: 22,
     title:
       "Bridging the Scale Gap: Cross-View Localization from Dense Rover LiDAR to Coarse Lunar DEMs",
     authors:
       "Seongwon Kim, Minseok Song, Seonmo Yang, Soumyadeep Chatterjee, Ryan Soussan, Seokju Lee, Pyojin Kim",
+    oral: true,
   },
   {
-    id: 40,
     title:
       "Rethinking Learned Occupancy in Autonomous Active Mapping with Observation-Gated Filtering",
     authors: "Jiahui Zhang, Bonian Han, Gongbo Liang, Yu Zhang",
+    oral: true,
   },
-];
-
-const posterPresentations: AcceptedPaper[] = [
   {
-    id: 3,
     title:
       "Proprioceptive Learning-Based Nonlinear Control for Planetary Rover Navigation",
     authors: "Umesh Krishna Ponugupati, Yashwanth Kumar Nakka",
   },
   {
-    id: 4,
     title:
       "Alakananda: A ROS 2-Enabled Modular Mars Rover for Field and Astrobiological Exploration",
     authors:
       "Manish Jain, Jay Dhamija, Rhitam Dutta, Pranjay Dhawan, Ekam Singh, Mrinal Sood, Sachin Kansal, Ashish Singla",
   },
   {
-    id: 7,
     title:
       "Distributionally Robust Adaptive Iterative Covariance Steering for Small-Body Proximity Operations",
     authors: "Vivek Khatana, Aditya Gahlawat, Naira Hovakimyan, Petros G. Voulgaris",
   },
   {
-    id: 8,
     title: "A Robotic Lunar Lava Cave Explorer and Mission",
     authors: "Gilly Elor, William C. Stone",
   },
   {
-    id: 11,
     title:
       "The Autonomy–Avionics Trade-Off: Architectural Choices for Lunar Lava Tube Exploration Robots",
     authors: "Olga Ton",
   },
   {
-    id: 12,
     title: "Vision-based Detection and Tracking for Unknown Active Debris Removal",
     authors: "Huiji Yang, Yang Gao, Nicola Y. Bailey",
   },
   {
-    id: 13,
     title:
       "Towards Reinforcement Learning for Space Robotics: Fast Training and Reliable Real-World Transfer",
     authors:
       "Abhishek Naik, Michael Wu, Michael O'Sullivan, Colin Bellinger, Yunli Wang",
   },
   {
-    id: 14,
     title:
       "Offline Relevance Is Not Recovery: Seed-Dependent Small Language Model Policies for Spacecraft Fault Management",
     authors: "Geunwoo Park",
   },
   {
-    id: 17,
     title:
       "Craters as Constellations: Adapting Star Identification to Lunar Crater Identification",
     authors: "Jeongbin Sohn, Hyunsung Kim, Pyojin Kim, Seokju Lee",
   },
   {
-    id: 18,
     title:
       "Continuous Celestial Attitude Estimation for Lunar Rover Motion via Relative Tracking and Catalog Re-Anchoring",
     authors: "Jina Lee, Dowan Gwon, Uland Wong, Pyojin Kim",
   },
   {
-    id: 19,
     title:
       "Grounding Lunar Rover Simulation in Hardware, Physics, and Topography for Energy-Constrained Autonomy",
     authors: "Minseok Song, Sumin Lee, Junseo Moon, Seokju Lee",
   },
   {
-    id: 20,
     title:
       "Design of a Compact Dual-Sided Rover with Hybrid Compliance for Planetary Exploration",
     authors:
       "Junseo Moon, Hyunsung Kim, Minseok Song, Sunwoo Mun, Hyeonseok Jin, Seokju Lee",
   },
   {
-    id: 21,
     title:
       "Toward Evidence-Driven Human-Agent-Robot Teaming for Earth-Independent Anomaly Triage",
     authors: "Ignacio G. López-Francos, Alexis Gallagher, Samira Shalal",
   },
   {
-    id: 25,
     title: "Gravity as an Evolutionary Design Pressure for Legged Robot Mobility",
     authors: "Naomi Oke, Aja Mia Carter, Aaron M. Johnson",
   },
   {
-    id: 26,
     title:
       "The Evolution of a Swerve-Steer Robot with Dual-arm Manipulation for Multi-agent Space Applications",
     authors:
       "Andrew Sharp, Valentina Larina, Saesha Loonker, Mitch Pryor, Hallie Brass, Gloria Wang",
   },
   {
-    id: 27,
     title:
       "Beyond Hazard Reduction: Progress-Aware Evaluation and Off-Policy Supervision for Lunar Rover Safety Screens",
     authors: "Kevin Huang, Sunghyun Darian Park, Ishan Wazir",
   },
   {
-    id: 30,
     title:
       "Toward Froude-Number-Based Gait Switching for Humanoid Locomotion Control in Lunar Gravity",
     authors: "Jack Anders Smitterberg, Tan Chen",
   },
   {
-    id: 32,
     title:
       "Gait-Level Parameters and Performance Trade-offs in Grasp-Based Microgravity Locomotion",
     authors: "Chaerim Moon, Justin K. Yim",
   },
   {
-    id: 33,
     title:
       "Benchmarking Remote Sensing Deep Learning Models on Edge Computing Hardware",
     authors:
       "Joao Passos, Jiho Lee, Maxwell Kenny, Alberto Candela, Emily R. Dunkel, Steve Chien",
   },
   {
-    id: 35,
     title: "World-Model-Accelerated Planning for Lunar Dry Stone Stacking",
     authors: "Xuandong Liang, Rongyu Li, Xue Wan, Yang Gao, Qi Zhao, Yu He, Xuzhi Li",
   },
   {
-    id: 36,
     title:
       "Resource Prospecting for Extraterrestrial Subsurface Environments Using Unmanned Ground Vehicles",
     authors:
       "Nathaniel Rose, Hannah Chuang, Emanuel Gutierrez-Cornejo, Manuel A. Andrade-Rodriguez, Rishi Parashar, Dani Or, Parikshit Maini",
   },
   {
-    id: 37,
     title:
       "Lunar Cable-Driven Excavation Robot for Surface Construction with Load Characterization",
     authors: "Zahir Castrejon",
   },
   {
-    id: 38,
     title:
       "A Synthetic Terrain Data Generation Pipeline for Testing Perception on the Next-Gen Mars Helicopter",
     authors: "Deon F. Petrizzo, Adam Johnson",
   },
   {
-    id: 41,
     title:
       "A Deployable Four-Finger Payload for Teleoperated Free-Flying Manipulation with Astrobee",
     authors:
       "William Su, Jordan Kam, Yunosuke Nakamura, Yixiao Wang, Jianshu Zhou, Masayoshi Tomizuka",
   },
   {
-    id: 43,
     title:
       "AWM: All Wheel Morph for Continuous Wheel-Leg Morphing for Terrain Adaptive Locomotion",
     authors: "Jayden Chen, Shashwat Singh, Zeynep Temel",
   },
   {
-    id: 45,
     title: "Illumination-Aware Active Perception for Spacecraft Inspection",
     authors: "Sagarika Rao Valluri, Benjamin Riviere",
   },
   {
-    id: 46,
     title:
       "Safe-by-design Reinforcement Learning with CBF-Derived Admissible Action Sets: Experimental Validation on a Satellite Emulator",
     authors:
       "Nektarios Aristeidis Tafanidis, Sathyanarayanan Seshasayanan, Avijit Banerjee, George Nikolakopoulos",
   },
   {
-    id: 47,
     title:
       "Vision Foundation Models with Synthetic-Only Training for Monocular Spacecraft Pose Estimation",
     authors: "John Church, Vazghen Nikolian",
   },
   {
-    id: 48,
     title:
       "What Visual-Inertial Navigation Costs on Radiation-Tolerant Hardware: Compute Characterisation of a RISC-V and FPGA Lunar Rover Navigation Subsystem at Preliminary Design",
     authors: "Alexey Simonov, Sergio Fabian Sirota, Yusra Alkendi",
   },
   {
-    id: 49,
     title:
       "Toward Qualified Soft Actuators for Space: Stratospheric Flight and Gamma Radiation Testing of Dielectric Elastomer Actuators",
     authors: "Anatol Mateusz Gogoj, Mihai Duduta",
   },
   {
-    id: 51,
     title:
       "Escape Without a Recipe: Maneuver-Agnostic Mars Rover Recovery from Granular Entrapment",
     authors:
@@ -710,13 +676,13 @@ const OrganizerCard = (props: { person: Person }) => {
   );
 };
 
-const PaperItem = (props: { paper: AcceptedPaper; oral?: boolean }) => {
-  const { paper, oral } = props;
+const PaperItem = (props: { paper: AcceptedPaper }) => {
+  const { paper } = props;
   return (
-    <div className={`${style.paperItem} ${oral ? style.paperItemOral : ""}`}>
+    <div className={style.paperItem}>
       <div className={style.paperTitle}>
-        <span className={style.paperId}>#{paper.id}</span>
         {paper.title}
+        {paper.oral ? <span className={style.paperBadge}>Oral</span> : null}
       </div>
       <div className={style.paperAuthors}>{paper.authors}</div>
     </div>
@@ -969,21 +935,11 @@ const Iros2026Page = () => (
           (4 oral + 31 poster).
         </p>
 
-        <SubSection title="Oral Presentations (4)">
-          <div className={style.paperList}>
-            {oralPresentations.map(paper => (
-              <PaperItem key={paper.id} paper={paper} oral />
-            ))}
-          </div>
-        </SubSection>
-
-        <SubSection title="Poster Presentations (31)">
-          <div className={style.paperList}>
-            {posterPresentations.map(paper => (
-              <PaperItem key={paper.id} paper={paper} />
-            ))}
-          </div>
-        </SubSection>
+        <div className={style.paperList}>
+          {acceptedSubmissions.map(paper => (
+            <PaperItem key={paper.title} paper={paper} />
+          ))}
+        </div>
       </Section>
 
       <Section title="Call for Contributions">
