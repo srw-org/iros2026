@@ -232,7 +232,8 @@ const agenda: AgendaItem[] = [
     ],
   },
   {
-    title: "Industry Lightning Talk — TBD",
+    title:
+      'Industry Lightning Talk — "Shadow Voyager: A Semi-Autonomous Rover for Lunar Ice Mining"',
     time: "9:50 – 9:55 AM",
     speakers: [
       {
@@ -243,7 +244,8 @@ const agenda: AgendaItem[] = [
     ],
   },
   {
-    title: "Invited Talk — TBD",
+    title:
+      'Invited Talk — "GITAI’s Approach to Spacecraft Development"',
     time: "9:55 – 10:10 AM",
     speakers: [
       {
