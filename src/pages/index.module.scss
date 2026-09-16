@@ -441,13 +441,19 @@
 
 // ------------------------------------------------------------------
 // Sponsors
+.sponsorRows {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-top: 18px;
+}
+
 .sponsorGrid {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 28px 56px;
-  margin-top: 18px;
 }
 
 .sponsorLink {
@@ -464,11 +470,19 @@
   display: block;
   height: 84px;
   width: auto;
-  max-width: 100%;
+  max-width: min(100%, 480px);
   object-fit: contain;
 
   @include breakpoint(mobile) {
     height: 64px;
+  }
+}
+
+.sponsorRows .sponsorGrid:nth-child(2) .sponsorLogo {
+  height: 64px;
+
+  @include breakpoint(mobile) {
+    height: 48px;
   }
 }
 

@@ -155,17 +155,31 @@ type Sponsor = {
   url: string;
 };
 
-const sponsors: Sponsor[] = [
-  {
-    name: "SETI Institute",
-    logo: "/images/sponsors/seti-institute.svg",
-    url: "https://www.seti.org/",
-  },
-  {
-    name: "Starpath",
-    logo: "/images/sponsors/starpath.png",
-    url: "https://www.starpath.space",
-  },
+const sponsorRows: Sponsor[][] = [
+  [
+    {
+      name: "SETI Institute",
+      logo: "/images/sponsors/seti-institute.svg",
+      url: "https://www.seti.org/",
+    },
+    {
+      name: "Starpath",
+      logo: "/images/sponsors/starpath.png",
+      url: "https://www.starpath.space",
+    },
+  ],
+  [
+    {
+      name: "IEEE RAS Technical Committee for Space Robotics",
+      logo: "/images/sponsors/ieee-ras-space-robotics.png",
+      url: "https://www.ieee-ras.org/space-robotics/",
+    },
+    {
+      name: "ERC-TRIPS Engineering Research Center",
+      logo: "/images/sponsors/erc-trips.png",
+      url: "https://erc-trips.re.kr/",
+    },
+  ],
 ];
 
 type AgendaSpeaker = {
@@ -1087,17 +1101,21 @@ const Iros2026Page = () => (
           We are grateful to the organizations whose support helps make the Space
           Robotics Workshop possible.
         </p>
-        <div className={style.sponsorGrid}>
-          {sponsors.map(sponsor => (
-            <a
-              key={sponsor.name}
-              href={sponsor.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={style.sponsorLink}
-            >
-              <img src={sponsor.logo} alt={sponsor.name} className={style.sponsorLogo} />
-            </a>
+        <div className={style.sponsorRows}>
+          {sponsorRows.map((row, rowIndex) => (
+            <div className={style.sponsorGrid} key={rowIndex}>
+              {row.map(sponsor => (
+                <a
+                  key={sponsor.name}
+                  href={sponsor.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={style.sponsorLink}
+                >
+                  <img src={sponsor.logo} alt={sponsor.name} className={style.sponsorLogo} />
+                </a>
+              ))}
+            </div>
           ))}
         </div>
       </Section>
