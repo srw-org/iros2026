@@ -441,11 +441,18 @@
 
 // ------------------------------------------------------------------
 // Sponsors
-.sponsorRows {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
-  margin-top: 18px;
+.sponsorTier {
+  margin-top: 28px;
+}
+
+.sponsorTierLabel {
+  margin-bottom: 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5a6577;
+  text-align: center;
 }
 
 .sponsorGrid {
@@ -478,11 +485,20 @@
   }
 }
 
-.sponsorRows .sponsorGrid:nth-child(2) .sponsorLogo {
-  height: 64px;
+.sponsorLogoGold {
+  height: 72px;
 
   @include breakpoint(mobile) {
-    height: 48px;
+    height: 56px;
+  }
+}
+
+.sponsorLogoSupport {
+  height: 96px;
+  max-width: min(100%, 360px);
+
+  @include breakpoint(mobile) {
+    height: 72px;
   }
 }
 

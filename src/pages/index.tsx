@@ -85,7 +85,7 @@ const organizers: Person[] = [
   {
     name: "Ignacio G. López-Francos",
     affiliation: "SETI Institute / UT Austin",
-    photo: "/images/organizers/ignacioGLopezFrancos.png",
+    photo: "/images/iros2026/people/ignacioGLopezFrancos.png",
     url: "https://www.linkedin.com/in/ilopezfrancos/",
   },
   {
@@ -109,25 +109,25 @@ const organizers: Person[] = [
   {
     name: "Marcel Kaufmann",
     affiliation: "NASA JPL",
-    photo: "/images/organizers/marcelKaufmann.jpeg",
+    photo: "/images/iros2026/people/marcelKaufmann.jpeg",
     url: "https://www.linkedin.com/in/kaufmann-space",
   },
   {
     name: "Brian Coltin",
     affiliation: "NASA ARC / KBR",
-    photo: "/images/organizers/brianColtin.jpg",
+    photo: "/images/iros2026/people/brianColtin.jpg",
     url: "https://brian.coltin.org/",
   },
   {
     name: "Roshan Kalghatgi",
     affiliation: "NASA ARC / KBR",
-    photo: "/images/organizers/roshanKalghatgi.png",
+    photo: "/images/iros2026/people/roshanKalghatgi.png",
     url: "https://www.linkedin.com/in/roshankalghatgi/",
   },
   {
     name: "Hiro Ono",
     affiliation: "NASA JPL / Georgia Tech",
-    photo: "/images/scientific-committee/hiroOno.jpg",
+    photo: "/images/iros2026/people/hiroOno.jpg",
   },
   {
     name: "Harsh G. Bhundiya",
@@ -144,7 +144,7 @@ const organizers: Person[] = [
   {
     name: "Pyojin Kim",
     affiliation: "GIST",
-    photo: "/images/scientific-committee/pyojinKim.jpeg",
+    photo: "/images/iros2026/people/pyojinKim.jpeg",
     url: "https://mpil-gist.github.io/",
   },
 ];
@@ -155,8 +155,13 @@ type Sponsor = {
   url: string;
 };
 
-const sponsorRows: Sponsor[][] = [
-  [
+type SponsorTier = {
+  platinum: Sponsor[];
+  gold: Sponsor[];
+};
+
+const sponsors: SponsorTier = {
+  platinum: [
     {
       name: "SETI Institute",
       logo: "/images/sponsors/seti-institute.svg",
@@ -168,18 +173,26 @@ const sponsorRows: Sponsor[][] = [
       url: "https://www.starpath.space",
     },
   ],
-  [
-    {
-      name: "IEEE RAS Technical Committee for Space Robotics",
-      logo: "/images/iros2026/sponsors/ieee-ras-space-robotics.png",
-      url: "https://www.ieee-ras.org/space-robotics/",
-    },
+  gold: [
     {
       name: "ERC-TRIPS Engineering Research Center",
       logo: "/images/iros2026/sponsors/erc-trips.png",
       url: "https://erc-trips.re.kr/",
     },
   ],
+};
+
+const supportingOrganizations: Sponsor[] = [
+  {
+    name: "IEEE RAS Technical Committee for Space Robotics",
+    logo: "/images/iros2026/sponsors/ras-tc-sr.png",
+    url: "https://www.ieee-ras.org/space-robotics/",
+  },
+  {
+    name: "NASA",
+    logo: "/images/iros2026/sponsors/nasa.png",
+    url: "https://www.nasa.gov/",
+  },
 ];
 
 type AgendaSpeaker = {
@@ -205,7 +218,7 @@ const agenda: AgendaItem[] = [
       {
         name: "Ignacio G. López-Francos",
         affiliation: "SETI Institute / UT Austin",
-        photo: "/images/organizers/ignacioGLopezFrancos.png",
+        photo: "/images/iros2026/people/ignacioGLopezFrancos.png",
       },
     ],
   },
@@ -1030,6 +1043,10 @@ const Iros2026Page = () => (
               presented at the workshop.
             </li>
             <li>
+              Posters should be A0 size (841 × 1189 mm / 33.1 × 46.8 in). Either
+              portrait or landscape orientation is acceptable.
+            </li>
+            <li>
               Camera-ready versions of accepted submissions will be published on the
               workshop website. At least one author must register for the workshop and
               present the poster in person.
@@ -1096,27 +1113,66 @@ const Iros2026Page = () => (
         </SubSection>
       </Section>
 
-      <Section title="Sponsors">
+      <Section title="Sponsors & Supporters">
         <p>
           We are grateful to the organizations whose support helps make the Space
           Robotics Workshop possible.
         </p>
-        <div className={style.sponsorRows}>
-          {sponsorRows.map((row, rowIndex) => (
-            <div className={style.sponsorGrid} key={rowIndex}>
-              {row.map(sponsor => (
-                <a
-                  key={sponsor.name}
-                  href={sponsor.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={style.sponsorLink}
-                >
-                  <img src={sponsor.logo} alt={sponsor.name} className={style.sponsorLogo} />
-                </a>
-              ))}
-            </div>
-          ))}
+        <div className={style.sponsorTier}>
+          <div className={style.sponsorTierLabel}>Platinum</div>
+          <div className={style.sponsorGrid}>
+            {sponsors.platinum.map(sponsor => (
+              <a
+                key={sponsor.name}
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={style.sponsorLink}
+              >
+                <img src={sponsor.logo} alt={sponsor.name} className={style.sponsorLogo} />
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className={style.sponsorTier}>
+          <div className={style.sponsorTierLabel}>Gold</div>
+          <div className={style.sponsorGrid}>
+            {sponsors.gold.map(sponsor => (
+              <a
+                key={sponsor.name}
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={style.sponsorLink}
+              >
+                <img
+                  src={sponsor.logo}
+                  alt={sponsor.name}
+                  className={`${style.sponsorLogo} ${style.sponsorLogoGold}`}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className={style.sponsorTier}>
+          <div className={style.sponsorTierLabel}>Supporting Organizations</div>
+          <div className={style.sponsorGrid}>
+            {supportingOrganizations.map(org => (
+              <a
+                key={org.name}
+                href={org.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={style.sponsorLink}
+              >
+                <img
+                  src={org.logo}
+                  alt={org.name}
+                  className={`${style.sponsorLogo} ${style.sponsorLogoSupport}`}
+                />
+              </a>
+            ))}
+          </div>
         </div>
       </Section>
 
