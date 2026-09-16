@@ -171,12 +171,12 @@ const sponsorRows: Sponsor[][] = [
   [
     {
       name: "IEEE RAS Technical Committee for Space Robotics",
-      logo: "/images/sponsors/ieee-ras-space-robotics.png",
+      logo: "/images/iros2026/sponsors/ieee-ras-space-robotics.png",
       url: "https://www.ieee-ras.org/space-robotics/",
     },
     {
       name: "ERC-TRIPS Engineering Research Center",
-      logo: "/images/sponsors/erc-trips.png",
+      logo: "/images/iros2026/sponsors/erc-trips.png",
       url: "https://erc-trips.re.kr/",
     },
   ],
