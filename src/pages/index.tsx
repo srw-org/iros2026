@@ -189,6 +189,11 @@ const supportingOrganizations: Sponsor[] = [
     url: "https://www.ieee-ras.org/space-robotics/",
   },
   {
+    name: "IEEE RAS Technical Committee for Robot Learning",
+    logo: "/images/iros2026/sponsors/ras-tc-rl.png",
+    url: "https://www.ieee-ras.org/robot-learning/",
+  },
+  {
     name: "NASA",
     logo: "/images/iros2026/sponsors/nasa.png",
     url: "https://www.nasa.gov/",
