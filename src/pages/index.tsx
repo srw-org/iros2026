@@ -43,14 +43,14 @@ const speakers: Person[] = [
     url: "https://yanggao.people.ust.hk/",
   },
   {
-    name: "Marco Hutter",
+    name: "Yusuke Tanaka",
     affiliation: "ETH Zurich",
-    photo: "/images/iros2026/people/marcoHutter.jpg",
-    url: "https://rsl.ethz.ch/the-lab/people/person-detail.hutter.html",
+    photo: "/images/iros2026/people/yusukeTanaka.jpg",
+    url: "https://yusuke-tanaka.org/",
   },
   {
     name: "Rob Ambrose",
-    affiliation: "Texas A&M University / NASA",
+    affiliation: "Texas A&M University",
     photo: "/images/iros2026/people/robAmbrose.jpg",
     url: "https://www.linkedin.com/in/robert-ambrose-81544547",
   },
@@ -68,7 +68,7 @@ const speakers: Person[] = [
   },
   {
     name: "Emma Zemler",
-    affiliation: "NASA",
+    affiliation: "NASA Johnson Space Center",
     photo: "/images/iros2026/people/emmaZemler.jpg",
     url: "https://www.linkedin.com/in/emma-zemler-31a6723b6",
   },
@@ -205,14 +205,18 @@ type AgendaSpeaker = {
   affiliation: string;
   photo?: string;
   role?: string;
+  bio?: string[];
 };
 
 type AgendaItem = {
   title: string;
   time: string;
+  kind?: string;
   isBreak?: boolean;
   description?: string;
+  abstract?: string[];
   speakers?: AgendaSpeaker[];
+  papers?: { title: string; authors: string }[];
 };
 
 const agenda: AgendaItem[] = [
@@ -228,68 +232,121 @@ const agenda: AgendaItem[] = [
     ],
   },
   {
-    title:
-      'Keynote — "Similitude Techniques for Correlating Lunar Rover Performance with Earth Testing"',
+    kind: "Keynote",
+    title: "Similitude Techniques for Correlating Lunar Rover Performance with Earth Testing",
     time: "8:35 – 9:00 AM",
     speakers: [
       {
         name: "Rob Ambrose",
-        affiliation: "Texas A&M University / NASA",
+        affiliation: "Texas A&M University",
         photo: "/images/iros2026/people/robAmbrose.jpg",
+        bio: [
+          "Rob Ambrose is a University Distinguished Professor of Mechanical Engineering at Texas A&M University, Associate Director of the Texas A&M Space Institute, and Director for Space and Robotics Initiatives at the Texas A&M Engineering Experiment Station. Before joining Texas A&M, he spent more than two decades at NASA Johnson Space Center, where he served as Chief of the Software, Robotics and Simulation Division and helped lead the development of systems including Robonaut, Valkyrie, and multiple lunar rover concepts. He is a member of the National Academy of Engineering, and his research focuses on robotic manipulation, mobility, and space robotics.",
+        ],
       },
     ],
   },
   {
-    title:
-      'Invited Talk — "From Constellation Coordination to Mission-Scale Digital Twins"',
+    kind: "Invited Talk",
+    title: "From Constellation Coordination to Mission-Scale Digital Twins",
     time: "9:00 – 9:25 AM",
+    abstract: [
+      "Coordinated space missions require spacecraft to make decisions with incomplete information while their opportunities to observe and interact change along their orbits. This talk presents research from the Space-FALCON Lab on distributed state estimation and constellation control, and examines how these capabilities can support autonomy across an entire mission. The talk will introduce SpaceAGORA.jl, a modular simulation framework for developing and evaluating spacecraft guidance, navigation, and control, and discuss how it connects individual algorithms to realistic mission scenarios. Examples from spacecraft coordination and proximity operations will motivate the development of mission-scale digital twins that link physical models with observations and experiments to assess the consequences of autonomous decisions. It will also discuss the role of flight data and hardware experiments in building confidence in these models, and the challenges of keeping human operators informed and involved as mission complexity grows.",
+    ],
     speakers: [
       {
         name: "Giusy Falcone",
         affiliation: "University of Michigan",
         photo: "/images/iros2026/people/giusyFalcone.jpg",
+        bio: [
+          "Giusy Falcone is an Assistant Professor of Aerospace Engineering at the University of Michigan, where she founded and directs the Space-FALCON Lab. Her research connects flight mechanics, guidance and control, and autonomous decision-making to enable adaptive space missions. She studies spacecraft and constellation coordination under uncertainty and develops simulation tools for evaluating mission behavior, including SpaceAGORA.jl. She earned her Ph.D. in Aerospace Engineering at the University of Illinois Urbana-Champaign in 2022 and was a postdoctoral researcher at Carnegie Mellon University’s Robotics Institute before joining Michigan.",
+        ],
       },
     ],
   },
   {
-    title:
-      'Invited Talk — "TRUSSES: Temporarily, Robots Unite to Surmount Sandy Entrapments, then Separate"',
+    kind: "Invited Talk",
+    title: "TRUSSES: Temporarily, Robots Unite to Surmount Sandy Entrapments, then Separate",
     time: "9:25 – 9:50 AM",
+    abstract: [
+      "Robots exploring extraterrestrial environments will need to be able to robustly traverse the environment and recover from a number of hazards, including sinkage, slippage, and entrapment in the ground. As part of a recent LuSTR project, we have developed methods for teams of robots to jointly overcome hazards by attaching to each other to form larger and more stable, maneuverable structures. In this talk, I will show some results of this project and discuss our approach to giving robots the ability to sense ground interactions, estimate traversal risk, and plan safe motions, even in the presence of loose, treacherous terrain.",
+    ],
     speakers: [
       {
         name: "Cynthia Sung",
         affiliation: "University of Pennsylvania",
         photo: "/images/iros2026/people/cynthiaSung.jpg",
+        bio: [
+          "Cynthia Sung is an Associate Professor in the Department of Mechanical Engineering and Applied Mechanics (MEAM) and a member of the General Robotics, Automation, Sensing & Perception (GRASP) Lab at the University of Pennsylvania. She completed a Ph.D. (2016) in Electrical Engineering and Computer Science at MIT and a B.S. (2011) in Mechanical Engineering at Rice University. Her research interest is computational design and fabrication for robotic systems, with a particular focus on origami-inspired and compliant robots. She is the recipient of a 2023 ONR Young Investigator Award, a 2019 NSF CAREER Award, a 2020 Johnson & Johnson Women in STEM2D Scholars Award, and a 2017 Popular Mechanics Breakthrough Award.",
+        ],
       },
     ],
   },
   {
-    title:
-      'Industry Lightning Talk — "Shadow Voyager: A Semi-Autonomous Rover for Lunar Ice Mining"',
+    kind: "Industry Lightning Talk",
+    title: "Shadow Voyager: A Semi-Autonomous Rover for Lunar Ice Mining",
     time: "9:50 – 9:55 AM",
+    abstract: [
+      "Starpath was founded by former SpaceX engineers to use robots and ISRU to enable human settlement of the Moon and Mars. Starpath is developing the Shadow Voyager rover to mine water ice from permanently shadowed regions (PSRs) of craters at the Lunar South Pole, as well as the chemical plant to refine the ice into LOX for propellant and the vertical solar array to power the plant. Shadow Voyager uses LIDAR sensors, an IMU, a star tracker, and fine sun sensors for semi-autonomous waypoint navigation within line-of-sight and fully autonomous navigation beyond line-of-sight.",
+      "We’re currently developing the Shadow Voyager R9 prototype at our ATLANTIS (Autonomous Technology Lunar Analog Navigation Test and Integration Site) in the Mojave Desert, while building the near-flight-ready R11 prototype, with the goal of having a flight-ready rover by Q4 2027. We’re also working with NASA’s Ames Research Center and Goddard Space Flight Center on the HELION (High-speed Exploration using LIDAR for Intelligent Onboard Navigation) project to develop high-speed navigation capabilities for autonomous lunar rovers.",
+    ],
     speakers: [
       {
         name: "Brian Yamauchi",
         affiliation: "Starpath",
         photo: "/images/iros2026/people/brianYamauchi.jpg",
+        bio: [
+          "Brian Yamauchi is the Head of Software Engineering at Starpath, a New Space company building an end-to-end system for mining ice on the Moon and producing LOX to refuel landers. He leads the team developing the autonomy, teleoperation, and communications software for the Shadow Voyager rover. Previously, he was a Principal Roboticist at both Boston Dynamics and iRobot, and he has over 30 years of experience developing robots for commercial, defense, and space applications. Before that, he was a Robotics Engineer at NASA’s Kennedy Space Center and a Research Associate at the US Naval Research Laboratory. He holds a B.S. in Applied Math/Computer Science from Carnegie Mellon University, an M.S. in Computer Science from the University of Rochester, and a Ph.D. in Computer Science from Case Western Reserve University.",
+        ],
       },
     ],
   },
   {
+    kind: "Invited Talk",
     title:
-      'Invited Talk — "GITAI’s Approach to Spacecraft Development"',
+      "GITAI’s Approach to Spacecraft Development: Agile, Vertically Integrated Development Built on Experience in Terrestrial Robotics",
     time: "9:55 – 10:10 AM",
+    abstract: [
+      "GITAI is a vertically integrated space company delivering scalable LEO satellite constellation platforms for interceptor, on-orbit servicing, communications, and observation missions. A key strength of GITAI is its in-house development of core technologies, enabling tight integration and rapid iteration across spacecraft systems.",
+      "Coming from terrestrial robotics rather than the traditional space industry, GITAI brings a different development mindset, unconstrained by some conventional assumptions and practices. Building on this experience, we apply an agile, highly iterative approach based on rapid cycles of design, build, test, and failure — what we call “crush & build.”",
+      "In this talk, I will introduce GITAI’s approach to accelerating spacecraft development, accompanied by videos from our latest development and testing efforts.",
+    ],
     speakers: [
       {
         name: "Yuto Nakanishi",
         affiliation: "GITAI",
         photo: "/images/iros2026/people/yutoNakanishi.jpg",
+        bio: [
+          "Yuto Nakanishi is Chief Robotics Officer of GITAI. For nearly eight years at GITAI, he has worked to bring development practices and engineering know-how cultivated in terrestrial robotics into spacecraft development, helping establish GITAI’s agile and vertically integrated development approach. He was previously Founder & CEO of SCHAFT. After serving as a research associate at the University of Tokyo Graduate School of Information Science and Technology (JSK Lab), he founded the bipedal robotics startup SCHAFT, which won the DARPA Robotics Challenge Trials in 2013. He later sold the company to Google and led the Tokyo bipedal robotics platform development team at Google X for five years.",
+        ],
       },
     ],
   },
   {
-    title: "Contributed Paper Spotlights (4 × 5-minute presentations)",
+    title: "Contributed Paper Spotlights",
     time: "10:10 – 10:30 AM",
+    papers: [
+      {
+        title: "Dynamic Symmetry for Orientation-Independent Planetary Mobility",
+        authors: "Boxi Xia, Jiaxun Liu, Boyuan Chen",
+      },
+      {
+        title:
+          "In-Situ Reconstruction of the International Space Station Using 3D Gaussian Splatting and Astrobee",
+        authors: "Hudson Kim, Ryan Soussan, Brian Coltin, Jordan Kam",
+      },
+      {
+        title:
+          "Bridging the Scale Gap: Cross-View Localization from Dense Rover LiDAR to Coarse Lunar DEMs",
+        authors:
+          "Seongwon Kim, Minseok Song, Seonmo Yang, Soumyadeep Chatterjee, Ryan Soussan, Seokju Lee, Pyojin Kim",
+      },
+      {
+        title:
+          "Rethinking Learned Occupancy in Autonomous Active Mapping with Observation-Gated Filtering",
+        authors: "Jiahui Zhang, Bonian Han, Gongbo Liang, Yu Zhang",
+      },
+    ],
   },
   {
     title: "Coffee Break + Poster Session",
@@ -297,60 +354,97 @@ const agenda: AgendaItem[] = [
     isBreak: true,
   },
   {
-    title:
-      'Invited Talk — "Lunar Leaper: A Mission to Investigate Lava Tubes on the Moon"',
+    kind: "Invited Talk",
+    title: "Lunar Leaper: Agile Legged Locomotion on the Moon",
     time: "11:00 – 11:25 AM",
+    abstract: [
+      "Legged robots have demonstrated unique traversability and robust locomotion capabilities in terrestrial environments. Extending these capabilities to extraterrestrial applications, such as lunar exploration, however, introduces substantial challenges in both mechanical design and control under tightly constrained mass, power, mechanical, and onboard-computing resources. Unlike terrestrial systems, space robotic hardware must accommodate stringent thermal-management and environmental-protection requirements associated with vacuum, extreme temperature variations, abrasive dust, radiation, and launch-induced shock and vibration. At the same time, locomotion on lunar regolith introduces highly variable and uncertain terrain interactions, placing additional demands on robust control.",
+    ],
     speakers: [
       {
-        name: "Marco Hutter",
+        name: "Yusuke Tanaka",
         affiliation: "ETH Zurich",
-        photo: "/images/iros2026/people/marcoHutter.jpg",
+        photo: "/images/iros2026/people/yusukeTanaka.jpg",
+        bio: [
+          "Yusuke Tanaka is a postdoctoral researcher at ETH Zurich’s Robotic Systems Lab (RSL) under Prof. Marco Hutter, where he works on legged robotic systems for terrestrial and extraterrestrial applications. He received his Ph.D. in Robotics from UCLA, where he worked at the Robotics and Mechanisms Laboratory on multi-limbed and climbing robots.",
+          "His research focuses on mechanical-intelligence-aware robotic systems for extreme environments, including limbed climbing robots, multimodal robotic systems, and dynamic legged robots for lunar exploration. At ETH Zurich, he serves as a robotics lead for the LunarLeaper project, developing dynamic legged mobility technologies for future lunar missions.",
+        ],
       },
     ],
   },
   {
-    title:
-      'Invited Talk — "AI Robotics for Sustainable Space Exploration"',
+    kind: "Invited Talk",
+    title: "AI Robotics for Sustainable Space Exploration",
     time: "11:25 – 11:50 AM",
+    abstract: [
+      "The global space sector is moving toward the New Space era, driven by commercialization and resource exploitation, where AI robotics will play central roles and be directly responsible for meeting stringent requirements in cost, operability, reusability, and sustainability of long-lived assets in harsh space environments. This talk will present recent research and technology development involving AI-powered algorithmic and mechanism design, ranging from spacecraft GNC to astronaut assistive robotics.",
+    ],
     speakers: [
       {
         name: "Yang Gao",
         affiliation: "Hong Kong University of Science and Technology",
         photo: "/images/iros2026/people/yangGao.jpg",
+        bio: [
+          "Professor Yang Gao, FIET FRAeS, has over 20 years of R&D and space mission experience, including ESA’s ExoMars, Proba-3, and lunar VMMO; the UK’s CLEAR, MoonLITE, and Moonraker; and China’s Chang’E-3/-8. She has led research projects for ESA, UKSA, UKRI, the EU, and industrial companies. Research under her leadership has won the IAF 3AF Edmond Brun Silver Medal (2013), the COSPAR Outstanding Paper Award (2016), the ESA SysNova Challenge First Prize (2018), the IEEE-ICRA Space Workshop Wiley Poster Award First Prize (2020), and the Sino-UK Entrepreneurship Competition First Prize (2022), among others. She served as Co-Chair of the IEEE-RAS Space Robotics Technical Committee for 2022–2025 and is an IEEE-RAS Distinguished Lecturer for 2026–2028.",
+          "Professor Gao spent over 20 years (2004–2025) in the UK as Professor of Robotics and Director of the Robotics Centre at King’s College London. Earlier, as Professor of Space Autonomous Systems at the University of Surrey, she founded and led the award-winning Space Technology and Autonomous Robotic systems Laboratory (STAR-LAB).",
+          "She joined HKUST in mid-2025 as a Global STEM Professor. At HKUST, she founded the Centre for AI and Robotics in Space Sustainability (CAIRSS), dedicated to developing technologies for orbital debris removal, autonomous space systems, and in-situ extraterrestrial resource utilization for crewed and uncrewed deep space missions. She is also Co-Director of HKUST’s Space Science & Technology Institute and Director of the InnoHK Hong Kong Space Robotics & Energy Centre.",
+        ],
       },
     ],
   },
   {
-    title:
-      'Panel Discussion — "Next-Gen Lunar Robotics: Building and Sustaining a Moon Base"',
+    kind: "Panel Discussion",
+    title: "Next-Gen Lunar Robotics: Building and Sustaining a Moon Base",
     time: "11:50 AM – 12:20 PM",
+    abstract: [
+      "Building and sustaining a human presence on the Moon will require a new generation of robots that can move beyond one-off demonstrations to survive and perform useful work as part of day-to-day surface operations. These systems will need to operate reliably over time, adapt to the lunar environment, and work effectively with crews and mission operators. This panel will examine what it takes to turn promising prototypes into operational systems, and how researchers, companies, and mission organizations can work together to make next-generation lunar robotics a practical foundation for a Moon base.",
+    ],
     speakers: [
       {
         name: "Yuto Nakanishi",
         affiliation: "GITAI",
         photo: "/images/iros2026/people/yutoNakanishi.jpg",
+        bio: [
+          "Chief Robotics Officer of GITAI. His experience spans humanoid and legged robotics, on-orbit robotic systems, and commercial space robotics, bringing a deployment-focused perspective on building machines that can perform useful work beyond Earth.",
+        ],
       },
       {
         name: "Emma Zemler",
-        affiliation: "NASA",
+        affiliation: "NASA Johnson Space Center",
         photo: "/images/iros2026/people/emmaZemler.jpg",
+        bio: [
+          "Project Manager of Dexterous Robotics at NASA Johnson Space Center. She brings the mission-integration perspective: how operational needs, environments, requirements, and challenge problems can be translated into productive collaboration with the broader robotics community, and what promising technologies must demonstrate to become relevant to future lunar operations.",
+        ],
       },
       {
         name: "Brian Yamauchi",
         affiliation: "Starpath",
         photo: "/images/iros2026/people/brianYamauchi.jpg",
+        bio: [
+          "Head of Software Engineering at Starpath, developing lunar surface systems with an emphasis on real hardware, field testing, and infrastructure-oriented use cases. He brings a commercial operator’s perspective on iteration speed, reliability, economics, and the path from prototype to sustained utility on the Moon.",
+        ],
       },
       {
         name: "Yashwanth Nakka",
         affiliation: "Georgia Tech",
         photo: "/images/iros2026/people/yashwanthNakka.jpg",
+        bio: [
+          "Assistant Professor of Aerospace Engineering and Director of the Aerospace Robotics Laboratory at Georgia Tech. His research focuses on autonomous aerospace systems, multi-robot collaboration, and planning and control under uncertainty. Previously a Robotics Technologist at NASA JPL, where he led planning, controls, and estimation tasks on CADRE, EELS, and DARPA LINC, he brings an academic perspective grounded in hardware validation and trustworthy robotic systems for lunar operations.",
+        ],
       },
     ],
   },
   {
     title: "Awards + Closing Remarks",
     time: "12:20 – 12:30 PM",
-    description: "Best Paper / Poster Awards + Closing",
+    description:
+      "Best Paper, Runner-Up Paper, Best Oral Presentation, and Best Poster.",
+  },
+  {
+    title: "Lunch",
+    time: "12:30 PM",
+    isBreak: true,
+    description: "Details TBD.",
   },
 ];
 
@@ -559,6 +653,21 @@ const contributionTopics: string[] = [
   "Sim-to-real transfer, digital twins, benchmarking, analog testing, and interoperable robotic interfaces",
 ];
 
+const dayOfFacts: { label: string; value: string }[] = [
+  { label: "Date", value: "Sunday, Sept. 27" },
+  { label: "Time", value: "8:30 AM – 12:30 PM ET" },
+  { label: "Room", value: "335, Level 3" },
+  { label: "Venue", value: "David L. Lawrence Convention Center" },
+];
+
+const dayOfLinks: { label: string; href: string; external?: boolean }[] = [
+  { label: "Venue Map", href: "https://2026.ieee-iros.org/program/venue_map/", external: true },
+  { label: "Agenda", href: "#agenda" },
+  { label: "Accepted Papers", href: "#accepted-papers" },
+  { label: "IROS Registration", href: "https://2026.ieee-iros.org/attend/registration/", external: true },
+  { label: "Space Robotics Social", href: "https://luma.com/m1oc5nev", external: true },
+];
+
 const objectives: { title: string; text: string }[] = [
   {
     title: "Connect",
@@ -620,16 +729,19 @@ const getCurrentTimelineStep = () => {
 
 const isCurrentStep = (stepIndex: number) => getCurrentTimelineStep() === stepIndex;
 
-const stepTitle = (index: number, label: string) => (
-  <span
-    style={{
-      fontWeight: isCurrentStep(index) ? "bold" : "normal",
-      color: isCurrentStep(index) ? "#1890ff" : "inherit",
-    }}
-  >
-    {label}
-  </span>
-);
+const stepTitle = (index: number, label: string) => {
+  const current = isCurrentStep(index);
+  return (
+    <span
+      style={{
+        fontWeight: current ? 700 : 400,
+        color: current ? "#1a1a1a" : "#8b93a1",
+      }}
+    >
+      {label}
+    </span>
+  );
+};
 
 const AgendaSpeakers = (props: { speakers: AgendaSpeaker[] }) => (
   <div className={style.agendaSpeakers}>
@@ -647,6 +759,45 @@ const AgendaSpeakers = (props: { speakers: AgendaSpeaker[] }) => (
     ))}
   </div>
 );
+
+const TalkDetails = (props: { item: AgendaItem }) => {
+  const { item } = props;
+  const withBio = (item.speakers ?? []).filter(speaker => speaker.bio);
+  if (!item.abstract && withBio.length === 0) return null;
+
+  const isPanel = withBio.length > 1;
+  const label = isPanel
+    ? "Panel description & panelists"
+    : item.abstract
+      ? "Abstract & speaker bio"
+      : "Speaker bio";
+
+  return (
+    <details className={style.talkDetails}>
+      <summary>{label}</summary>
+      <div className={style.talkDetailsBody}>
+        {item.abstract ? (
+          <div className={style.talkDetailsBlock}>
+            <div className={style.talkDetailsLabel}>{isPanel ? "About the panel" : "Abstract"}</div>
+            {item.abstract.map(paragraph => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        ) : null}
+        {withBio.map(speaker => (
+          <div key={speaker.name} className={style.talkDetailsBlock}>
+            <div className={style.talkDetailsLabel}>
+              {isPanel ? `${speaker.name} · ${speaker.affiliation}` : `About ${speaker.name}`}
+            </div>
+            {speaker.bio?.map(paragraph => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        ))}
+      </div>
+    </details>
+  );
+};
 
 const initials = (name: string) =>
   name
@@ -772,10 +923,9 @@ const Iros2026Page = () => (
       <Alert
         message={
           <>
-            <strong>Workshop registration is open.</strong> To attend the Space
-            Robotics Workshop at IROS 2026, you must register for the{" "}
-            <strong>workshop ticket</strong> — this is separate from the main IROS
-            2026 conference registration.{" "}
+            <strong>Registration is open.</strong> Attending the workshop requires a{" "}
+            <strong>workshop ticket</strong>, which is separate from the main IROS 2026
+            conference registration.{" "}
             <a
               href="https://2026.ieee-iros.org/attend/registration/"
               target="_blank"
@@ -828,14 +978,48 @@ const Iros2026Page = () => (
               <div className={style.heroMetaValue}>Pittsburgh, PA, USA</div>
             </div>
             <div className={style.heroMetaItem}>
-              <div className={style.heroMetaLabel}>Dates</div>
-              <div className={style.heroMetaValue}>September 27th, 2026</div>
+              <div className={style.heroMetaLabel}>Date</div>
+              <div className={style.heroMetaValue}>Sunday, September 27, 2026</div>
             </div>
           </div>
         </div>
       </div>
 
-      <Section title="Overview">
+      <Section title="Important Info for Attendees">
+        <div className={style.dayOf}>
+          <div className={style.dayOfFacts}>
+            {dayOfFacts.map(fact => (
+              <div key={fact.label} className={style.dayOfFact}>
+                <div className={style.dayOfFactLabel}>{fact.label}</div>
+                <div className={style.dayOfFactValue}>{fact.value}</div>
+              </div>
+            ))}
+          </div>
+          <div className={style.dayOfActions}>
+            {dayOfLinks.map(link =>
+              link.external ? (
+                <a
+                  key={link.label}
+                  className={style.dayOfButton}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label}
+                  <span className={style.externalIcon} aria-hidden="true">↗</span>
+                </a>
+              ) : (
+                <a key={link.label} className={style.dayOfButton} href={link.href}>
+                  {link.label}
+                </a>
+              )
+            )}
+          </div>
+        </div>
+      </Section>
+
+
+      <Section title="About">
         <p>
           Robotic systems are becoming central to the next decade of space activity:
           NASA's Artemis lunar campaign and broader Moon-to-Mars architecture; the growing
@@ -875,7 +1059,12 @@ const Iros2026Page = () => (
       </Section>
 
       <Section title="Timeline">
-        <Steps progressDot current={getCurrentTimelineStep()} direction="vertical">
+        <Steps
+          className={style.eventTimeline}
+          progressDot
+          current={getCurrentTimelineStep()}
+          direction="vertical"
+        >
           <Step
             title={stepTitle(0, "Call for extended abstracts opens")}
             description="June 12th, 2026"
@@ -912,19 +1101,13 @@ const Iros2026Page = () => (
                 <br />
                 Pittsburgh, PA, USA
                 <br />
+                Room 335, Level 3
+                <br />
                 September 27th, 2026
               </>
             }
           />
         </Steps>
-      </Section>
-
-      <Section title="Invited Speakers">
-        <div className={style.speakersGrid}>
-          {speakers.map(person => (
-            <SpeakerCard key={person.name} person={person} />
-          ))}
-        </div>
       </Section>
 
       <Section title="Agenda">
@@ -940,25 +1123,41 @@ const Iros2026Page = () => (
               color={item.isBreak ? "#9aa3af" : undefined}
             >
               <div className={item.isBreak ? style.agendaBreak : undefined}>
-                <b>{item.title}</b>
-                <br />
+                {item.kind ? <div className={style.agendaKind}>{item.kind}</div> : null}
+                <div className={style.agendaTitle}>{item.title}</div>
                 <Time time={item.time} />
                 {item.description ? (
-                  <>
-                    <br />
-                    {item.description}
-                  </>
+                  <div className={style.agendaDescription}>{item.description}</div>
                 ) : null}
                 {item.speakers && item.speakers.length > 0 ? (
                   <AgendaSpeakers speakers={item.speakers} />
                 ) : null}
+                {item.papers && item.papers.length > 0 ? (
+                  <ol className={style.spotlightPapers}>
+                    {item.papers.map(paper => (
+                      <li key={paper.title}>
+                        <div className={style.spotlightTitle}>{paper.title}</div>
+                        <div className={style.spotlightAuthors}>{paper.authors}</div>
+                      </li>
+                    ))}
+                  </ol>
+                ) : null}
+                <TalkDetails item={item} />
               </div>
             </Timeline.Item>
           ))}
         </Timeline>
       </Section>
 
-      <Section title="Accepted Submissions">
+      <Section title="Speakers">
+        <div className={style.speakersGrid}>
+          {speakers.map(person => (
+            <SpeakerCard key={person.name} person={person} />
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Accepted Papers">
         <p>
           Congratulations to all the authors whose work was selected! Thank you to
           everyone who submitted, and to our reviewers for their valuable feedback
@@ -972,7 +1171,156 @@ const Iros2026Page = () => (
         </div>
       </Section>
 
+      <Section title="Social & Tour">
+        <SubSection title="Space Robotics Social @ IROS 2026">
+          <p className={style.eventMeta}>
+            Sunday, Sept. 27 · 8:30 – 11:00 PM ET · Space Bar, 22 Market Square
+          </p>
+          <p>
+            Join the SRW ×{" "}
+            <a
+              href="https://sites.google.com/view/iros-2026-rose-workshop/home?authuser=0"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ROSE workshop
+            </a>{" "}
+            social right after the IROS welcome reception. RSVP is required, and
+            approval is subject to capacity.
+          </p>
+          <iframe
+            className={style.socialEmbed}
+            src="https://luma.com/embed/event/m1oc5nev/simple"
+            title="Space Robotics Social @ IROS 2026"
+            allowFullScreen
+            aria-hidden="false"
+          />
+          <p className={style.embedFallback}>
+            Card not loading?{" "}
+            <a href="https://luma.com/m1oc5nev" target="_blank" rel="noopener noreferrer">
+              RSVP on Luma
+            </a>
+            .
+          </p>
+        </SubSection>
+        <SubSection title="Astrobotic HQ">
+          <div className={style.bookedBadge}>Fully booked · Registration closed</div>
+          <p className={style.eventMeta}>
+            Monday, Sept. 28 · 10:30 AM ET · About 90 minutes
+          </p>
+          <p>
+            Facility tour of Astrobotic’s headquarters in Pittsburgh. Confirmed
+            attendees have received logistics by email.
+          </p>
+          <span className={style.signupClosed} aria-disabled="true">
+            Sign-up closed
+          </span>
+        </SubSection>
+      </Section>
+      <Section title="Organizers">
+        <p>
+          The Space Robotics Workshop is a volunteer-led effort by researchers and
+          practitioners in robotics, autonomy, and AI from across academia, government, and
+          industry.
+        </p>
+        <SubSection title="Organizing Committee">
+          <div className={style.organizerGrid}>
+            {organizers.map(person => (
+              <OrganizerCard key={person.name} person={person} />
+            ))}
+          </div>
+        </SubSection>
+      </Section>
+
+      <Section title="Sponsors">
+        <p>
+          We are grateful to the organizations whose support helps make the Space
+          Robotics Workshop possible.
+        </p>
+        <div className={style.sponsorTier}>
+          <div className={style.sponsorTierLabel}>Platinum</div>
+          <div className={style.sponsorGrid}>
+            {sponsors.platinum.map(sponsor => (
+              <a
+                key={sponsor.name}
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={style.sponsorLink}
+              >
+                <img src={sponsor.logo} alt={sponsor.name} className={style.sponsorLogo} />
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className={style.sponsorTier}>
+          <div className={style.sponsorTierLabel}>Gold</div>
+          <div className={style.sponsorGrid}>
+            {sponsors.gold.map(sponsor => (
+              <a
+                key={sponsor.name}
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={style.sponsorLink}
+              >
+                <img
+                  src={sponsor.logo}
+                  alt={sponsor.name}
+                  className={`${style.sponsorLogo} ${style.sponsorLogoGold}`}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className={style.sponsorTier}>
+          <div className={style.sponsorTierLabel}>Supporting Organizations</div>
+          <div className={style.sponsorGrid}>
+            {supportingOrganizations.map(org => (
+              <a
+                key={org.name}
+                href={org.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={style.sponsorLink}
+              >
+                <img
+                  src={org.logo}
+                  alt={org.name}
+                  className={`${style.sponsorLogo} ${style.sponsorLogoSupport}`}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+
+      <Section title="Expected Audience">
+        <p>
+          The workshop targets researchers and practitioners working on planetary robotics
+          and autonomy for extreme surface environments (Moon, Mars, and other planetary
+          bodies), along with the broader IROS community developing enabling methods that
+          translate to deep-space missions. Expected backgrounds include surface mobility
+          and terramechanics, contact-rich manipulation and sampling, perception /
+          localization / mapping under degraded sensing, planning and control for
+          long-horizon autonomy, multi-robot and heterogeneous teaming, fault management
+          and assurance, and human-robot teaming.
+        </p>
+        <p>
+          We explicitly engage the <strong>IEEE RAS Technical Committee on Space
+          Robotics</strong> and closely related communities (Field Robotics, Robotic
+          Vision, SLAM, Mobile Manipulation, Multi-Robot Systems, and HRI), as well as
+          government agencies and the Pittsburgh-area robotics and space ecosystem
+          (e.g., Astrobotic, Field.AI, and Carnegie Mellon University).
+        </p>
+      </Section>
+
       <Section title="Call for Contributions">
+        <p className={style.archiveNote}>
+          Submissions are closed. The call is kept here for reference; see{" "}
+          <a href="#accepted-papers">Accepted Papers</a> for the program.
+        </p>
         <p>
           The organizing committee invites high-quality contributions advancing robotics
           for exploration, operation, construction, and sustained activity beyond Earth.
@@ -1043,13 +1391,14 @@ const Iros2026Page = () => (
             </li>
             <li>
               Accepted submissions will be presented as posters. A selected subset will
-              also be invited to give short oral presentations. Best Contribution
-              <sup>*</sup> and Best Oral Presentation<sup>**</sup> awards will be
-              presented at the workshop.
+              also be invited to give short oral presentations. Awards presented at
+              the workshop are Best Paper, Runner-Up Paper, Best Oral Presentation,
+              and Best Poster.
             </li>
             <li>
-              Posters should be A0 size (841 × 1189 mm / 33.1 × 46.8 in). Either
-              portrait or landscape orientation is acceptable.
+              Posters should fit within a maximum 4 ft × 4 ft (122 × 122 cm) display
+              area. No mandatory template or orientation. An A0 poster fits within
+              this area.
             </li>
             <li>
               Camera-ready versions of accepted submissions will be published on the
@@ -1057,15 +1406,6 @@ const Iros2026Page = () => (
               present the poster in person.
             </li>
           </ul>
-          <p>
-            <sup>*</sup> Best Contribution recognizes the strongest technical work,
-            based on the extended abstract, poster, and overall relevance to the
-            workshop themes.
-          </p>
-          <p>
-            <sup>**</sup> Best Oral Presentation recognizes the strongest live
-            communication among the selected oral presenters.
-          </p>
         </SubSection>
 
         <p>
@@ -1081,104 +1421,6 @@ const Iros2026Page = () => (
             <a href="mailto:pjinkim@gist.ac.kr">pjinkim@gist.ac.kr</a>
           </li>
         </ul>
-      </Section>
-
-      <Section title="Expected Audience">
-        <p>
-          The workshop targets researchers and practitioners working on planetary robotics
-          and autonomy for extreme surface environments (Moon, Mars, and other planetary
-          bodies), along with the broader IROS community developing enabling methods that
-          translate to deep-space missions. Expected backgrounds include surface mobility
-          and terramechanics, contact-rich manipulation and sampling, perception /
-          localization / mapping under degraded sensing, planning and control for
-          long-horizon autonomy, multi-robot and heterogeneous teaming, fault management
-          and assurance, and human-robot teaming.
-        </p>
-        <p>
-          We explicitly engage the <strong>IEEE RAS Technical Committee on Space
-          Robotics</strong> and closely related communities (Field Robotics, Robotic
-          Vision, SLAM, Mobile Manipulation, Multi-Robot Systems, and HRI), as well as
-          government agencies and the Pittsburgh-area robotics and space ecosystem
-          (e.g., Astrobotic, Field.AI, and Carnegie Mellon University).
-        </p>
-      </Section>
-
-      <Section title="Organizers">
-        <p>
-          The Space Robotics Workshop is a volunteer-led effort by researchers and
-          practitioners in robotics, autonomy, and AI from across academia, government, and
-          industry.
-        </p>
-        <SubSection title="Organizing Committee">
-          <div className={style.organizerGrid}>
-            {organizers.map(person => (
-              <OrganizerCard key={person.name} person={person} />
-            ))}
-          </div>
-        </SubSection>
-      </Section>
-
-      <Section title="Sponsors & Supporters">
-        <p>
-          We are grateful to the organizations whose support helps make the Space
-          Robotics Workshop possible.
-        </p>
-        <div className={style.sponsorTier}>
-          <div className={style.sponsorTierLabel}>Platinum</div>
-          <div className={style.sponsorGrid}>
-            {sponsors.platinum.map(sponsor => (
-              <a
-                key={sponsor.name}
-                href={sponsor.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={style.sponsorLink}
-              >
-                <img src={sponsor.logo} alt={sponsor.name} className={style.sponsorLogo} />
-              </a>
-            ))}
-          </div>
-        </div>
-        <div className={style.sponsorTier}>
-          <div className={style.sponsorTierLabel}>Gold</div>
-          <div className={style.sponsorGrid}>
-            {sponsors.gold.map(sponsor => (
-              <a
-                key={sponsor.name}
-                href={sponsor.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={style.sponsorLink}
-              >
-                <img
-                  src={sponsor.logo}
-                  alt={sponsor.name}
-                  className={`${style.sponsorLogo} ${style.sponsorLogoGold}`}
-                />
-              </a>
-            ))}
-          </div>
-        </div>
-        <div className={style.sponsorTier}>
-          <div className={style.sponsorTierLabel}>Supporting Organizations</div>
-          <div className={style.sponsorGrid}>
-            {supportingOrganizations.map(org => (
-              <a
-                key={org.name}
-                href={org.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={style.sponsorLink}
-              >
-                <img
-                  src={org.logo}
-                  alt={org.name}
-                  className={`${style.sponsorLogo} ${style.sponsorLogoSupport}`}
-                />
-              </a>
-            ))}
-          </div>
-        </div>
       </Section>
 
       <Section title="Contact">

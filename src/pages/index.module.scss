@@ -254,7 +254,287 @@
 }
 
 // ------------------------------------------------------------------
+// Event timeline (submission schedule)
+.eventTimeline {
+  :global {
+    .ant-steps-item:not(.ant-steps-item-process) .ant-steps-item-description {
+      opacity: 0.6;
+      color: #8b93a1 !important;
+    }
+
+    .ant-steps-item:not(.ant-steps-item-process) .ant-steps-item-title {
+      opacity: 0.8;
+    }
+
+    .ant-steps-item-process .ant-steps-icon-dot {
+      background: #1a1a1a !important;
+      background-color: #1a1a1a !important;
+    }
+
+    .ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title {
+      color: #1a1a1a !important;
+    }
+
+    .ant-steps-item-process .ant-steps-item-description {
+      opacity: 1;
+      color: #1d2c4d !important;
+    }
+
+    .ant-steps-item-finish .ant-steps-icon-dot {
+      background: #c5cbd6 !important;
+      background-color: #c5cbd6 !important;
+    }
+  }
+}
+
+// ------------------------------------------------------------------
+// Day-of
+.dayOf {
+  margin-top: 4px;
+  padding: 22px 24px;
+  border: 1px solid #d7e0ee;
+  border-radius: 14px;
+  background: #f4f7fb;
+}
+
+.dayOfFacts {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.8fr) minmax(150px, 1fr) minmax(110px, 0.7fr) minmax(200px, 1.5fr);
+  gap: 14px 24px;
+  margin-bottom: 20px;
+
+  @include breakpoint(mobile) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dayOfFact {
+  min-width: 0;
+}
+
+.dayOfFactLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7789;
+  margin-bottom: 2px;
+}
+
+.dayOfFactValue {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #1d2c4d;
+}
+
+.externalIcon {
+  margin-left: 6px;
+  font-size: 0.8em;
+  opacity: 0.75;
+}
+
+.dayOfActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dayOfButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #1d2c4d;
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  border-bottom: none;
+
+  &:hover {
+    background: #2b4b7c;
+    color: #fff !important;
+  }
+}
+
+.eventMeta {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #1d2c4d;
+}
+
+.socialEmbed {
+  width: 100%;
+  min-height: 450px;
+  border: 1px solid #d7e0ee;
+  border-radius: 12px;
+  margin: 12px 0 8px;
+}
+
+.embedFallback {
+  font-size: 0.88rem;
+  color: #6b7789;
+}
+
+.bookedBadge {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #7f1d1d;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.archiveNote {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #f4f7fb;
+  color: #5a6577;
+  font-size: 0.92rem;
+}
+
+.signupClosed {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #e8ecf2;
+  color: #6b7789;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// ------------------------------------------------------------------
 // Agenda
+.agendaKind {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5a6b82;
+  margin-bottom: 2px;
+}
+
+.agendaTitle {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #1f2a3a;
+}
+
+.agendaDescription {
+  margin-top: 2px;
+  color: #3a4658;
+}
+
+.spotlightPapers {
+  margin: 12px 0 4px;
+  padding-left: 22px;
+  max-width: 760px;
+
+  li {
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+
+  li::marker {
+    color: #5a6b82;
+    font-weight: 600;
+  }
+}
+
+.spotlightTitle {
+  font-weight: 600;
+  color: #1f2a3a;
+  line-height: 1.35;
+}
+
+.spotlightAuthors {
+  margin-top: 2px;
+  font-size: 13px;
+  color: #5a6b82;
+  line-height: 1.35;
+}
+
+.talkDetails {
+  margin-top: 4px;
+
+  summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2b4b7c;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(-45deg);
+      transition: transform 0.15s ease;
+    }
+
+    &:hover {
+      color: #1d2c4d;
+      text-decoration: underline;
+    }
+  }
+
+  &[open] summary::before {
+    transform: rotate(45deg) translate(-1px, -1px);
+  }
+}
+
+.talkDetailsBody {
+  max-width: 760px;
+  margin-top: 10px;
+  padding: 14px 18px;
+  border-left: 3px solid #d7e0ee;
+  border-radius: 0 10px 10px 0;
+  background: #f7f9fc;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #3a4658;
+
+  p {
+    margin: 0 0 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.talkDetailsBlock + .talkDetailsBlock {
+  margin-top: 14px;
+}
+
+.talkDetailsLabel {
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #5a6577;
+}
+
 .agendaSpeakers {
   display: flex;
   flex-wrap: wrap;
@@ -304,9 +584,13 @@
 .agendaBreak {
   color: #6b7280;
 
-  b {
+  .agendaTitle {
     color: #4b5563;
     font-weight: 600;
+  }
+
+  .agendaDescription {
+    color: #6b7280;
   }
 
   span {
