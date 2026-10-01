@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Helmet } from "react-helmet";
 import { css } from "@emotion/react";
+import { TrophyOutlined } from "@ant-design/icons";
 import { Alert, Steps, Timeline } from "antd";
 
 import PageWrapper from "../components/page-wrapper";
@@ -452,6 +453,10 @@ type AcceptedPaper = {
   title: string;
   authors: string;
   oral?: boolean;
+  openReviewId: string;
+  posterId?: string;
+  videoId?: string;
+  award?: string;
 };
 
 const acceptedSubmissions: AcceptedPaper[] = [
@@ -459,12 +464,18 @@ const acceptedSubmissions: AcceptedPaper[] = [
     title: "Dynamic Symmetry for Orientation-Independent Planetary Mobility",
     authors: "Boxi Xia, Jiaxun Liu, Boyuan Chen",
     oral: true,
+    openReviewId: "c4uztxmCFB",
+    posterId: "1H_yGhYasdzT-pt5BOV6cUg9edtySpKc4",
+    award: "Best Paper",
   },
   {
     title:
-      "In-Situ Reconstruction of the International Space Station Using 3D Gaussian Splatting and Astrobee",
-    authors: "Hudson Kim, Ryan Soussan, Brian Coltin, Jordan Kam",
+      "Rethinking Learned Occupancy in Autonomous Active Mapping with Observation-Gated Filtering",
+    authors: "Jiahui Zhang, Bonian Han, Gongbo Liang, Yu Zhang",
     oral: true,
+    openReviewId: "1Bke5T54bv",
+    posterId: "1xGMpS508cPSrd7z2qkBR0CMwGs3xE2qj",
+    award: "Runner-Up Paper",
   },
   {
     title:
@@ -472,171 +483,228 @@ const acceptedSubmissions: AcceptedPaper[] = [
     authors:
       "Seongwon Kim, Minseok Song, Seonmo Yang, Soumyadeep Chatterjee, Ryan Soussan, Seokju Lee, Pyojin Kim",
     oral: true,
+    openReviewId: "E4IT4s10s0",
+    posterId: "1i-4BEpaG-xoL7LEmN5c4QAXQVfT-qQek",
+    award: "Best Oral Presentation",
   },
   {
     title:
-      "Rethinking Learned Occupancy in Autonomous Active Mapping with Observation-Gated Filtering",
-    authors: "Jiahui Zhang, Bonian Han, Gongbo Liang, Yu Zhang",
+      "Gait-Level Parameters and Performance Trade-offs in Grasp-Based Microgravity Locomotion",
+    authors: "Chaerim Moon, Justin K. Yim",
+    openReviewId: "rQQokJWTuF",
+    posterId: "1j7uIb7Tx5ca_qmH3JDKHn9BxqNW79pRB",
+    videoId: "15nV4JXqpEjNHCmU6rl4LeClHD3dd0N7Y",
+    award: "Best Poster",
+  },
+  {
+    title:
+      "In-Situ Reconstruction of the International Space Station Using 3D Gaussian Splatting and Astrobee",
+    authors: "Hudson Kim, Ryan Soussan, Brian Coltin, Jordan Kam",
     oral: true,
+    openReviewId: "Z2qAyZij5x",
+    posterId: "1-fxjDLYr5kmkixqAJeygSzbtTH_lGxj0",
   },
   {
     title:
       "Proprioceptive Learning-Based Nonlinear Control for Planetary Rover Navigation",
     authors: "Umesh Krishna Ponugupati, Yashwanth Kumar Nakka",
+    openReviewId: "scD0t08ywx",
+    posterId: "1FHa277WiXRll4-Q_BVFCo028NKHjSks4",
+    videoId: "1JGSZn8JaIxvvPTIUlAiNfO8OcDxEpg3R",
   },
   {
     title:
       "Alakananda: A ROS 2-Enabled Modular Mars Rover for Field and Astrobiological Exploration",
     authors:
       "Manish Jain, Jay Dhamija, Rhitam Dutta, Pranjay Dhawan, Ekam Singh, Mrinal Sood, Sachin Kansal, Ashish Singla",
+    openReviewId: "w1HjaLpipX",
+    posterId: "1s27_xhuVDJP8dhNbEpkJ0WvSYYKp4Ixg",
+    videoId: "1lAvBt1qr6a96HJIkuoDTmfeYthZpRsnG",
   },
   {
     title:
       "Distributionally Robust Adaptive Iterative Covariance Steering for Small-Body Proximity Operations",
     authors: "Vivek Khatana, Aditya Gahlawat, Naira Hovakimyan, Petros G. Voulgaris",
-  },
-  {
-    title: "A Robotic Lunar Lava Cave Explorer and Mission",
-    authors: "Gilly Elor, William C. Stone",
+    openReviewId: "o4EsUqbbtK",
+    posterId: "1TUURXbQ5MOqhHeEXWuKZj7RE74I0JeAS",
   },
   {
     title:
       "The Autonomy–Avionics Trade-Off: Architectural Choices for Lunar Lava Tube Exploration Robots",
     authors: "Olga Ton",
+    openReviewId: "mERLHjRelZ",
+    posterId: "1IAfTu_Kc9A7e9BopHPwhCnjZBvzGQd1g",
   },
   {
     title: "Vision-based Detection and Tracking for Unknown Active Debris Removal",
     authors: "Huiji Yang, Yang Gao, Nicola Y. Bailey",
+    openReviewId: "fui9ErX2pO",
+    posterId: "1wKr6rs88RtPnHml_lfky5Kd30-lIAIVZ",
   },
   {
     title:
       "Towards Reinforcement Learning for Space Robotics: Fast Training and Reliable Real-World Transfer",
     authors:
       "Abhishek Naik, Michael Wu, Michael O'Sullivan, Colin Bellinger, Yunli Wang",
+    openReviewId: "YOZzoHcRjW",
+    posterId: "1Fq5gb8MQHg9FKbdOOItuG-rVpBEDigIe",
+    videoId: "1MB-7QqTDwyWxBRDq_TXbf-GFLW4siQRm",
   },
   {
     title:
       "Offline Relevance Is Not Recovery: Seed-Dependent Small Language Model Policies for Spacecraft Fault Management",
     authors: "Geunwoo Park",
+    openReviewId: "7F3J1vLFTG",
   },
   {
     title:
       "Craters as Constellations: Adapting Star Identification to Lunar Crater Identification",
     authors: "Jeongbin Sohn, Hyunsung Kim, Pyojin Kim, Seokju Lee",
+    openReviewId: "vwdVKyYaOa",
   },
   {
     title:
       "Continuous Celestial Attitude Estimation for Lunar Rover Motion via Relative Tracking and Catalog Re-Anchoring",
     authors: "Jina Lee, Dowan Gwon, Uland Wong, Pyojin Kim",
+    openReviewId: "cenPdAqkCN",
   },
   {
     title:
       "Grounding Lunar Rover Simulation in Hardware, Physics, and Topography for Energy-Constrained Autonomy",
     authors: "Minseok Song, Sumin Lee, Junseo Moon, Seokju Lee",
+    openReviewId: "98AwNkfgDz",
   },
   {
     title:
       "Design of a Compact Dual-Sided Rover with Hybrid Compliance for Planetary Exploration",
     authors:
       "Junseo Moon, Hyunsung Kim, Minseok Song, Sunwoo Mun, Hyeonseok Jin, Seokju Lee",
+    openReviewId: "Mod3Ga6SIx",
   },
   {
     title:
       "Toward Evidence-Driven Human-Agent-Robot Teaming for Earth-Independent Anomaly Triage",
     authors: "Ignacio G. López-Francos, Alexis Gallagher, Samira Shalal",
+    openReviewId: "CpIxKGsPK7",
   },
   {
     title: "Gravity as an Evolutionary Design Pressure for Legged Robot Mobility",
     authors: "Naomi Oke, Aja Mia Carter, Aaron M. Johnson",
+    openReviewId: "enaORpjylD",
   },
   {
     title:
       "The Evolution of a Swerve-Steer Robot with Dual-arm Manipulation for Multi-agent Space Applications",
     authors:
       "Andrew Sharp, Valentina Larina, Saesha Loonker, Mitch Pryor, Hallie Brass, Gloria Wang",
+    openReviewId: "7Dc0vEG5uP",
   },
   {
     title:
       "Beyond Hazard Reduction: Progress-Aware Evaluation and Off-Policy Supervision for Lunar Rover Safety Screens",
     authors: "Kevin Huang, Sunghyun Darian Park, Ishan Wazir",
+    openReviewId: "jUZtfioUUg",
+    posterId: "1pRiaKVKFnl3hE3FSuUcUCU50Soah56BX",
   },
   {
     title:
       "Toward Froude-Number-Based Gait Switching for Humanoid Locomotion Control in Lunar Gravity",
     authors: "Jack Anders Smitterberg, Tan Chen",
-  },
-  {
-    title:
-      "Gait-Level Parameters and Performance Trade-offs in Grasp-Based Microgravity Locomotion",
-    authors: "Chaerim Moon, Justin K. Yim",
+    openReviewId: "vpZRTapD6g",
+    posterId: "1QN6SfLv6qhKlL01M-svlwnKY_nuT9u4L",
   },
   {
     title:
       "Benchmarking Remote Sensing Deep Learning Models on Edge Computing Hardware",
     authors:
       "Joao Passos, Jiho Lee, Maxwell Kenny, Alberto Candela, Emily R. Dunkel, Steve Chien",
+    openReviewId: "t7j2QiK5Nx",
+    posterId: "1cW06vldb1Sao-cNhpZ8Xwk9MYExFdfZ-",
   },
   {
     title: "World-Model-Accelerated Planning for Lunar Dry Stone Stacking",
     authors: "Xuandong Liang, Rongyu Li, Xue Wan, Yang Gao, Qi Zhao, Yu He, Xuzhi Li",
+    openReviewId: "QphGB8zpgk",
+    posterId: "1xP4POzExhf3FnvSWdvpyr5xkD0BnExWG",
+    videoId: "12c3Qelr7lMgW5fUL6scekSQdiRo2qha5",
   },
   {
     title:
       "Resource Prospecting for Extraterrestrial Subsurface Environments Using Unmanned Ground Vehicles",
     authors:
       "Nathaniel Rose, Hannah Chuang, Emanuel Gutierrez-Cornejo, Manuel A. Andrade-Rodriguez, Rishi Parashar, Dani Or, Parikshit Maini",
+    openReviewId: "pDVr9TGU6C",
+    posterId: "1Uq9NCFcQpWq805O257laPEHkSs_w3iYX",
+    videoId: "128VBRdOySqYfQGgdP95RgA7ROhv-ztHz",
   },
   {
     title:
       "Lunar Cable-Driven Excavation Robot for Surface Construction with Load Characterization",
     authors: "Zahir Castrejon",
+    openReviewId: "cYvZZYm321",
   },
   {
     title:
       "A Synthetic Terrain Data Generation Pipeline for Testing Perception on the Next-Gen Mars Helicopter",
     authors: "Deon F. Petrizzo, Adam Johnson",
+    openReviewId: "xRNvcD04jj",
   },
   {
     title:
       "A Deployable Four-Finger Payload for Teleoperated Free-Flying Manipulation with Astrobee",
     authors:
       "William Su, Jordan Kam, Yunosuke Nakamura, Yixiao Wang, Jianshu Zhou, Masayoshi Tomizuka",
+    openReviewId: "DC8D0n0i5f",
   },
   {
     title:
       "AWM: All Wheel Morph for Continuous Wheel-Leg Morphing for Terrain Adaptive Locomotion",
     authors: "Jayden Chen, Shashwat Singh, Zeynep Temel",
+    openReviewId: "odm7vrS9Ih",
   },
   {
     title: "Illumination-Aware Active Perception for Spacecraft Inspection",
     authors: "Sagarika Rao Valluri, Benjamin Riviere",
+    openReviewId: "BURuoSpyPF",
   },
   {
     title:
       "Safe-by-design Reinforcement Learning with CBF-Derived Admissible Action Sets: Experimental Validation on a Satellite Emulator",
     authors:
       "Nektarios Aristeidis Tafanidis, Sathyanarayanan Seshasayanan, Avijit Banerjee, George Nikolakopoulos",
+    openReviewId: "SpqHwevxu3",
+    posterId: "1G_Ric8RhVSSQQ5Bhh_9zsgQEZ5uZ8Tht",
+    videoId: "1Ee3ijIHIo4gMG-aqoGPB74senCfhO991",
   },
   {
     title:
       "Vision Foundation Models with Synthetic-Only Training for Monocular Spacecraft Pose Estimation",
     authors: "John Church, Vazghen Nikolian",
+    openReviewId: "1GFH2h0lKt",
+    posterId: "1Xd7OhPki131JTAGDdqKiruulAMXlPW57",
+    videoId: "1jSQmpK-gCJYzRP5g0x-9A5oRgT2YZNpi",
   },
   {
     title:
       "What Visual-Inertial Navigation Costs on Radiation-Tolerant Hardware: Compute Characterisation of a RISC-V and FPGA Lunar Rover Navigation Subsystem at Preliminary Design",
     authors: "Alexey Simonov, Sergio Fabian Sirota, Yusra Alkendi",
+    openReviewId: "ekbqG0pp3o",
+    posterId: "1fQ4IluqPNJpenX32Akg_pVXrr9OQKbZb",
   },
   {
     title:
       "Toward Qualified Soft Actuators for Space: Stratospheric Flight and Gamma Radiation Testing of Dielectric Elastomer Actuators",
     authors: "Anatol Mateusz Gogoj, Mihai Duduta",
+    openReviewId: "gGogtjWAI8",
+    posterId: "19-KD1QXj0YF4bHK3h_KWI3fyvJaIJM2K",
+    videoId: "1x6YVJINOwJS6Af9c__b-P4HTL7Pt4Wel",
   },
   {
     title:
       "Escape Without a Recipe: Maneuver-Agnostic Mars Rover Recovery from Granular Entrapment",
     authors:
       "Meraj Hossain Promit, Chandak Chakma, Md Jubair Ahmed Sourov, Sejuti Rahman",
+    openReviewId: "5EDD8VMDlE",
   },
 ];
 
@@ -861,15 +929,40 @@ const OrganizerCard = (props: { person: Person }) => {
   );
 };
 
+const driveFileUrl = (id: string) => `https://drive.google.com/file/d/${id}/view`;
+
 const PaperItem = (props: { paper: AcceptedPaper }) => {
   const { paper } = props;
+  const links = [
+    { label: "PDF", href: `https://openreview.net/pdf?id=${paper.openReviewId}` },
+    paper.posterId ? { label: "Poster", href: driveFileUrl(paper.posterId) } : null,
+    paper.videoId ? { label: "Video", href: driveFileUrl(paper.videoId) } : null,
+  ].filter((link): link is { label: string; href: string } => link !== null);
   return (
-    <div className={style.paperItem}>
+    <div className={paper.award ? `${style.paperItem} ${style.paperItemAwarded}` : style.paperItem}>
+      {paper.award ? (
+        <div className={style.paperAward}>
+          <TrophyOutlined /> {paper.award}
+        </div>
+      ) : null}
       <div className={style.paperTitle}>
         {paper.title}
         {paper.oral ? <span className={style.paperBadge}>Oral</span> : null}
       </div>
       <div className={style.paperAuthors}>{paper.authors}</div>
+      <div className={style.paperLinks}>
+        {links.map(link => (
+          <a
+            key={link.label}
+            className={style.paperLink}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
     </div>
   );
 };
