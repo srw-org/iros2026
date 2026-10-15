@@ -934,7 +934,7 @@ const driveFileUrl = (id: string) => `https://drive.google.com/file/d/${id}/view
 const PaperItem = (props: { paper: AcceptedPaper }) => {
   const { paper } = props;
   const links = [
-    { label: "PDF", href: `https://openreview.net/pdf?id=${paper.openReviewId}` },
+    { label: "Paper", href: `https://openreview.net/forum?id=${paper.openReviewId}` },
     paper.posterId ? { label: "Poster", href: driveFileUrl(paper.posterId) } : null,
     paper.videoId ? { label: "Video", href: driveFileUrl(paper.videoId) } : null,
   ].filter((link): link is { label: string; href: string } => link !== null);
